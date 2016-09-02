@@ -3,12 +3,20 @@
 
 namespace ads
 {
+    //!  A test class.
+    /*!
+      A more elaborate class description.
+    */
     class Node
     {
     public:
         Node(int value);
-        void setValue();
-        void getValue();
+        void setValue(int value);
+        //! Gets the value held by the node.
+        /*!
+          \return the value of the node.
+        */
+        int getValue();
         void setNext();
         void setPrev();
         void getNext();
@@ -19,6 +27,11 @@ namespace ads
         Node* prev;
         Node* next;
     };
+
+    //!  A test class 2.
+    /*!
+      A more elaborate class description.
+    */
 
     class LinkedList
     {
