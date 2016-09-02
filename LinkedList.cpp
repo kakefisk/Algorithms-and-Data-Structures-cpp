@@ -1,13 +1,13 @@
 #include "LinkedList.h"
 
-Node::Node(int value)
+ads::Node::Node(int value)
 {
     this->value = value;
 }
 
-LinkedList::LinkedList() {}
+ads::LinkedList::LinkedList() {}
 
-void LinkedList::push_back(int value)
+void ads::LinkedList::push_back(int value)
 {
     Node* node = new Node(value);
     if (empty())
@@ -20,7 +20,7 @@ void LinkedList::push_back(int value)
     }
 }
 
-bool LinkedList::empty()
+bool ads::LinkedList::empty()
 {
     return (head == null);
 }

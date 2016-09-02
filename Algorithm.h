@@ -17,6 +17,11 @@ namespace ads
         b = a;
     }
 
+    int add(int a, int b)
+    {
+        return a + b;
+    }
+
     void bubblesort(int* array, size_t size)
     {
         bool sorted = false;

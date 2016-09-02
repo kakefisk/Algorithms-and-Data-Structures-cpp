@@ -1,3 +1,7 @@
+# Code::Blocks
+*.depend
+doxygen/
+
 # Compiled Object files
 *.slo
 *.lo
