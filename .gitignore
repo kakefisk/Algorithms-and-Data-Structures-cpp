@@ -1,5 +1,6 @@
 # Code::Blocks
 *.depend
+*.layout
 doxygen/
 
 # Compiled Object files
