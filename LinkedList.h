@@ -93,6 +93,12 @@ namespace ads
         */
         Node* at(size_t pos) const;
 
+        //! Gets the number of nodes in the list
+        /*!
+        \return The number of nodes in the list.
+        */
+        size_t size() const;
+
         //! Clears the list
         void clear();
 
