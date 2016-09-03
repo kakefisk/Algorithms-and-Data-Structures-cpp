@@ -14,6 +14,7 @@ int& ads::Node::getValue()
 
 void ads::Node::setNext(Node* node)
 {
+    if (node != nullptr)
     this->next = node;
 }
 
@@ -40,9 +41,21 @@ void ads::LinkedList::push_back(int value)
 
 void ads::LinkedList::insert(size_t pos, int value)
 {
-    if (pos < 0 && pos > size)
+    if (pos < 0 && pos > size) return;
     Node* node = new Node(value);
-
+    Node* next;
+    if (pos == 0)
+    {
+        next = at(pos);
+        head = node;
+    }
+    else
+    {
+        Node* prev = at(pos - 1);
+        next = prev->getNext();
+        prev->setNext(node);
+    }
+    node->setNext(next);
 }
 
 ads::Node* ads::LinkedList::at(size_t pos) const

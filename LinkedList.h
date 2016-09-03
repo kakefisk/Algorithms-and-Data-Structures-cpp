@@ -43,6 +43,8 @@ namespace ads
         */
         Node* getNext() const;
 
+        const std::nullptr_t sentinel = nullptr;
+
     private:
         int value;
         Node* next;
