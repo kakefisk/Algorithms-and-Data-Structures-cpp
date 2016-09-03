@@ -1,6 +1,8 @@
 #ifndef ALGORITHM_H
 #define ALGORITHM_H
 
+#include <cstddef>
+
 namespace ads
 {
     void swap(int* a, int* b);
