@@ -25,7 +25,7 @@ ads::Node* ads::Node::getNext() const
 
 ads::LinkedList::LinkedList() : head(nullptr), size(0) {}
 
-void ads::LinkedList::push_back(int value)
+Node* ads::LinkedList::push_back(int value)
 {
     Node* node = new Node(value);
     if (empty())
@@ -37,9 +37,10 @@ void ads::LinkedList::push_back(int value)
         back()->setNext(node);
     }
     size++;
+    return node;
 }
 
-void ads::LinkedList::insert(size_t pos, int value)
+Node* ads::LinkedList::insert(size_t pos, int value)
 {
     if (pos < 0 && pos > size) return;
     Node* node = new Node(value);
@@ -56,6 +57,7 @@ void ads::LinkedList::insert(size_t pos, int value)
         prev->setNext(node);
     }
     node->setNext(next);
+    return node;
 }
 
 ads::Node* ads::LinkedList::at(size_t pos) const
@@ -104,6 +106,11 @@ void ads::LinkedList::remove(size_t pos)
     Node* next = prev->getNext()->getNext();
     delete prev->getNext();
     prev->setNext(next);
+}
+
+size_t ads::LinkedList::getSize() const
+{
+    return size;
 }
 
 bool ads::LinkedList::empty() const

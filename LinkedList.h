@@ -64,32 +64,34 @@ namespace ads
         //! Pushes a new Node to the back of the list with the specified value.
         /*!
         \param value The value of the new node.
+        \return A pointer to the new node.
         */
-        void push_back(int value);
+        Node* push_back(int value);
 
         //! Inserts a new Node at the specified position with the specified value.
         /*!
         \param pos The position to insert the new Node.
         \param value The value of the new node.
+        \return A pointer to the new node.
         */
-        void insert(size_t pos, int value);
+        Node* insert(size_t pos, int value);
 
         //! Gets the first node in the list
         /*!
-        \return A pointer to the first node in the list.
+        \return A pointer to the first node in the list. Or nullptr if the list is empty.
         */
         Node* front() const;
 
         //! Gets the last node in the list
         /*!
-        \return A pointer to the last node in the list.
+        \return A pointer to the last node in the list. Or nullptr if the list is empty.
         */
         Node* back() const;
 
         //! Gets the node at the specified position.
         /*!
         \param pos The position of the node.
-        \return A pointer to the node at at the specified position.
+        \return A pointer to the node at at the specified position, if such a node exists. Returns nullptr otherwise.
         */
         Node* at(size_t pos) const;
 
@@ -97,16 +99,17 @@ namespace ads
         /*!
         \return The number of nodes in the list.
         */
-        size_t size() const;
+        size_t getSize() const;
 
-        //! Clears the list
+        //! Clears the list and deletes all the nodes.
         void clear();
 
         //! Removes the node at the specified position.
         /*!
         \param pos The position of the node that is going to be deleted.
+        \return False if there is no node at the specified position or true otherwise.
         */
-        void remove(size_t pos);
+        bool remove(size_t pos);
 
         //! Checks whether the list is empty or not.
         /*!
@@ -115,8 +118,8 @@ namespace ads
         bool empty() const;
 
         private:
-        Node* head;
-        size_t size;
+        Node* m_head;
+        size_t m_size;
     };
 }
 

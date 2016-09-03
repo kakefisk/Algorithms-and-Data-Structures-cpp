@@ -37,7 +37,13 @@ TEST_CASE( "Testing bubblesort", "[bubblesort]" ) {
 }
 
 TEST_CASE( "Testing LinkedList::at", "[linkedlist]" ) {
+
     ads::LinkedList list;
+
+    SECTION( "Tries to access a node in a empty list" ) {
+        REQUIRE( list.at(0) == nullptr );
+    }
+
     list.push_back(1);
     list.push_back(2);
     list.push_back(3);
@@ -65,6 +71,6 @@ TEST_CASE( "Testing LinkedList::at", "[linkedlist]" ) {
     }
 
     SECTION( "Tries an index >= size" ) {
-        REQUIRE( list.at(9) == nullptr );
+        REQUIRE( list.at(list.size()) == nullptr );
     }
 }
