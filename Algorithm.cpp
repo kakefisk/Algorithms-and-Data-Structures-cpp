@@ -1,5 +1,10 @@
 #include "Algorithm.h"
 
+int ads::add(int a, int b)
+{
+    return a + b;
+}
+
 void ads::swap(int* a, int* b)
 {
     int tmp = *a;
@@ -11,7 +16,7 @@ void ads::swap(int& a, int& b)
 {
     int tmp = a;
     a = b;
-    b = a;
+    b = tmp;
 }
 
 void ads::bubblesort(int* array, size_t size)
