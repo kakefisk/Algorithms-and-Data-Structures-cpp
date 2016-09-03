@@ -118,8 +118,8 @@ namespace ads
         bool empty() const;
 
         private:
-        Node* m_head;
-        size_t m_size;
+        Node* head;
+        size_t size;
     };
 }
 

@@ -36,6 +36,104 @@ TEST_CASE( "Testing bubblesort", "[bubblesort]" ) {
     }
 }
 
+TEST_CASE( "Testing LinkedList::push_back", "[linkedlist]" ) {
+
+    ads::LinkedList list;
+    ads::Node* node = list.push_back(10);
+
+    SECTION( "Checks if correct value is pushed and can be accessed" ) {
+        REQUIRE( node->getValue() == 10 );
+    }
+
+    SECTION( "Checks if size of list is incremented" ) {
+        size_t size = list.getSize();
+        list.push_back(20);
+        REQUIRE( list.getSize() == size + 1 );
+    }
+}
+
+TEST_CASE( "Testing LinkedList::insert", "[linkedlist]" ) {
+
+    ads::LinkedList list;
+
+    SECTION( "Tries to insert at a negative position" ) {
+        REQUIRE( list.insert(-1, 1) == nullptr );
+    }
+
+    SECTION( "Tries to insert at pos > size" ) {
+        REQUIRE( list.insert(list.getSize() + 1, 1) == nullptr );
+    }
+
+    SECTION( "Inserts at head" ) {
+        list.insert(0, 1);
+        REQUIRE( list.front()->getValue() == 1 );
+    }
+
+    list.push_back(1);
+    list.push_back(2);
+    list.push_back(3);
+    list.push_back(4);
+
+    SECTION( "Inserts in middle" ) {
+        list.insert(2, 10);
+        REQUIRE( list.at(2)->getValue() == 10 );
+    }
+
+    SECTION( "Inserts at size. Similar to push_back." ) {
+        list.insert(list.getSize(), 10);
+        REQUIRE( list.back()->getValue() == 10 );
+    }
+}
+
+TEST_CASE( "Testing LinkedList::empty", "[linkedlist]" ) {
+
+    ads::LinkedList list;
+
+    SECTION( "Checks for empty list" ) {
+        REQUIRE( list.empty() == true );
+    }
+
+    list.push_back(1);
+
+    SECTION( "Checks for non-empty list" ) {
+        REQUIRE( list.empty() == false );
+    }
+}
+
+TEST_CASE( "Testing LinkedList::front", "[linkedlist]" ) {
+
+    ads::LinkedList list;
+
+    SECTION( "Checks for empty list" ) {
+        REQUIRE( list.front() == nullptr );
+    }
+
+    list.push_back(1);
+    list.push_back(2);
+    list.push_back(3);
+
+    SECTION( "Checks for non-empty list" ) {
+        REQUIRE( list.front()->getValue() == 1 );
+    }
+}
+
+TEST_CASE( "Testing LinkedList::back", "[linkedlist]" ) {
+
+    ads::LinkedList list;
+
+    SECTION( "Checks for empty list" ) {
+        REQUIRE( list.back() == nullptr );
+    }
+
+    list.push_back(1);
+    list.push_back(2);
+    list.push_back(3);
+
+    SECTION( "Checks for non-empty list" ) {
+        REQUIRE( list.back()->getValue() == 3 );
+    }
+}
+
 TEST_CASE( "Testing LinkedList::at", "[linkedlist]" ) {
 
     ads::LinkedList list;
@@ -71,6 +169,48 @@ TEST_CASE( "Testing LinkedList::at", "[linkedlist]" ) {
     }
 
     SECTION( "Tries an index >= size" ) {
-        REQUIRE( list.at(list.size()) == nullptr );
+        REQUIRE( list.at(list.getSize()) == nullptr );
+    }
+}
+
+TEST_CASE( "Testing LinkedList::remove", "[linkedlist]" ) {
+
+    ads::LinkedList list;
+
+    SECTION( "Tries to remove from an empty list" ) {
+        REQUIRE( list.remove(0) == false );
+    }
+
+    list.push_back(1);
+    list.push_back(2);
+    list.push_back(3);
+    list.push_back(4);
+    list.push_back(5);
+    list.push_back(6);
+    list.push_back(7);
+    list.push_back(8);
+    list.push_back(9);
+
+    SECTION( "Tries a negative index" ) {
+        REQUIRE( list.remove(-1) == false );
+    }
+
+    SECTION( "Remove first node" ) {
+        REQUIRE( list.remove(0) == true );
+        REQUIRE( list.front()->getValue() == 2 );
+    }
+
+    SECTION( "Removes middle node" ) {
+        REQUIRE( list.remove(4) == true );
+        REQUIRE( list.at(4)->getValue() == 6 );
+    }
+
+    SECTION( "Removes the last node" ) {
+        REQUIRE( list.remove(list.getSize() - 1) == true );
+        REQUIRE( list.back()->getValue() == 8 );
+    }
+
+    SECTION( "Tries an index >= size" ) {
+        REQUIRE( list.remove(list.getSize()) == false );
     }
 }
