@@ -14,10 +14,7 @@ int& ads::Node::getValue()
 
 void ads::Node::setNext(Node* node)
 {
-    if (node != nullptr)
-    {
-        this->next = node;
-    }
+    this->next = node;
 }
 
 ads::Node* ads::Node::getNext() const
@@ -91,7 +88,7 @@ ads::Node* ads::LinkedList::front() const
 
 ads::Node* ads::LinkedList::back() const
 {
-    if (empty()) return nullptr;
+    if (head == nullptr) return nullptr;
     Node* current = head;
     while (current->getNext() != nullptr) {
         current = current->getNext();
@@ -123,7 +120,7 @@ bool ads::LinkedList::remove(size_t pos)
     }
     else if (pos == size - 1)
     {
-        Node* prev = at(pos - 1);
+        Node* prev = at(pos);
         delete prev->getNext();
         prev->setNext(nullptr);
     }
