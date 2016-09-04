@@ -61,12 +61,12 @@ TEST_CASE( "Testing LinkedList::insert", "[linkedlist]" ) {
     }
 
     SECTION( "Tries to insert at pos > size" ) {
-        REQUIRE( list.insert(list.getSize() + 1, 1) == nullptr );
+        REQUIRE( list.insert(list.getSize() + 1, 4) == nullptr );
     }
 
     SECTION( "Inserts at head" ) {
-        list.insert(0, 1);
-        REQUIRE( list.front()->getValue() == 1 );
+        list.insert(0, 5);
+        REQUIRE( list.front()->getValue() == 5 );
     }
 
     list.push_back(1);
@@ -80,8 +80,14 @@ TEST_CASE( "Testing LinkedList::insert", "[linkedlist]" ) {
     }
 
     SECTION( "Inserts at size. Similar to push_back." ) {
-        list.insert(list.getSize(), 10);
-        REQUIRE( list.back()->getValue() == 10 );
+        list.insert(list.getSize(), 20);
+        REQUIRE( list.back()->getValue() == 20 );
+    }
+
+    SECTION( "Checks if size of list is incremented" ) {
+        size_t size = list.getSize();
+        list.insert(0, 20);
+        REQUIRE( list.getSize() == size + 1 );
     }
 }
 
@@ -212,5 +218,11 @@ TEST_CASE( "Testing LinkedList::remove", "[linkedlist]" ) {
 
     SECTION( "Tries an index >= size" ) {
         REQUIRE( list.remove(list.getSize()) == false );
+    }
+
+    SECTION( "Checks if size of list is decremented" ) {
+        size_t size = list.getSize();
+        list.remove(0);
+        REQUIRE( list.getSize() == size - 1 );
     }
 }
