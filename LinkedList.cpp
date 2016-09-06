@@ -90,7 +90,8 @@ ads::Node* ads::LinkedList::back() const
 {
     if (head == nullptr) return nullptr;
     Node* current = head;
-    while (current->getNext() != nullptr) {
+    while (current->getNext() != nullptr)
+    {
         current = current->getNext();
     }
     return current;
@@ -99,12 +100,12 @@ ads::Node* ads::LinkedList::back() const
 void ads::LinkedList::clear()
 {
     Node* current = head;
-    while (current->getNext() != nullptr) {
-        Node* prev = current;
-        current = current->getNext();
-        delete prev;
+    while (current != nullptr)
+    {
+        Node* next = current->getNext();
+        delete current;
+        current = next;
     }
-    delete head;
     head = nullptr;
     size = 0;
 }
@@ -120,7 +121,7 @@ bool ads::LinkedList::remove(size_t pos)
     }
     else if (pos == size - 1)
     {
-        Node* prev = at(pos);
+        Node* prev = at(pos - 1);
         delete prev->getNext();
         prev->setNext(nullptr);
     }

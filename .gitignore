@@ -1,6 +1,7 @@
 *.depend
 *.layout
 doxygen/
+.idea/
 
 # Compiled Object files
 *.slo

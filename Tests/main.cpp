@@ -226,3 +226,53 @@ TEST_CASE( "Testing LinkedList::remove", "[linkedlist]" ) {
         REQUIRE( list.getSize() == size - 1 );
     }
 }
+
+TEST_CASE( "Node::getNext, Node::setNext()" , "[linkedlist]" )
+{
+    ads::Node* node1 = new ads::Node(1);
+
+    SECTION( "Testing if it return nullptr if there is no next node" )
+    {
+        REQUIRE( node1->getNext() == nullptr );
+    }
+
+    SECTION( "Testing if next can be set and is set properly" )
+    {
+        ads::Node* node2 = new ads::Node(2);
+        node1->setNext(node2);
+        REQUIRE( node1->getNext() == node2 );
+        REQUIRE( node1->getNext()->getValue() == 2 );
+        delete node2;
+    }
+    delete node1;
+}
+
+TEST_CASE( "LinkedList::clear" , "[linkedlist]" )
+{
+    ads::LinkedList list;
+
+    SECTION( "Clearing an empty list" )
+    {
+        list.clear();
+        REQUIRE( list.getSize() == 0 );
+        REQUIRE( list.front() == nullptr );
+    }
+
+    list.push_back(1);
+    list.push_back(2);
+    list.push_back(3);
+    list.push_back(4);
+    list.push_back(5);
+
+    SECTION( "Clearing non-empty list" )
+    {
+        ads::Node* back = list.back();
+        ads::Node* node = list.front()->getNext();
+        list.clear();
+        REQUIRE( list.getSize() == 0 );
+        REQUIRE( list.front() == nullptr );
+        REQUIRE( back == nullptr );
+        REQUIRE( node == nullptr );
+    }
+}
+
