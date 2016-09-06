@@ -37,6 +37,8 @@
 			<Add option="-lads" />
 			<Add directory="C:/Users/orjan/Projects/C++/Algorithms and Data Structures/lib" />
 		</Linker>
+		<Unit filename="algorithm.cpp" />
+		<Unit filename="linkedlist.cpp" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
